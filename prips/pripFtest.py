@@ -9,17 +9,16 @@ ip1 = ip.split('.')
 base_ip = '.'.join(ip1[:3])
 
 # Generate IP addresses
-target_ips = []
 for i in range(1, 255):
     target_ip = f"{base_ip}.{i}"
-    target_ips.append(target_ip)
+    print(target_ip)
 
 # List of ports to scan
-ports = [22, 80, 443, 8888, 8080, 1521, 3306, 3389, 5000, 5432, 6379, 8055, 8443, 9000]
+ports = [80, 443]
 
 # Scan ports for each IP address
 try:
-    for targ in target_ips:
+    for targ in target_ip:
         for port in ports:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             socket.setdefaulttimeout(1)
