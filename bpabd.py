@@ -84,7 +84,7 @@ def main():
     
     results = asyncio.run(fuzz_urls(target_url, urls_to_fuzz, status_codes))
     
-    # Print and optionally write the results to a file
+    # Prepare output lines
     output_lines = []
     for result in results:
         output_lines.append(f"URL: {result['url']}")
@@ -92,12 +92,13 @@ def main():
         output_lines.append(f"Length Difference: {result['length_diff']}")
         output_lines.append('--------------------')
 
-    # Output results to the console and/or to a file
+    # Print results to the console
+    print("\n".join(output_lines))
+
+    # Output results to a file if specified
     if args.output:
         with open(args.output, 'w') as f:
             f.write("\n".join(output_lines))
-    else:
-        print("\n".join(output_lines))
 
 if __name__ == "__main__":
     main()
